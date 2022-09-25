@@ -96,12 +96,14 @@ student1.courses_in_progress += ['Python Pro']
 student1.finished_courses += ['SQL']
 student1.finished_courses += ['Python']
 student1.courses_in_progress += ['Java']
+student1.grades = {'Python': [10, 10, 10], 'SQL': [7, 7, 7]}
 
 student2 = Student('Максим', 'Волков', 'муж')
 student2.courses_in_progress += ['Python Pro']
 student2.finished_courses += ['SQL']
 student2.finished_courses += ['Python']
 student2.courses_in_progress += ['Java']
+student2.grades = {'Python': [8, 8, 8], 'SQL': [7, 7, 7]}
 
 mentor1 = Lecturer('Светлана', 'Тонкова')
 mentor1.courses_attached += ['Python']
@@ -168,17 +170,47 @@ student2.rate_lc(mentor2, 'SQL', 7)
 student2.rate_lc(mentor2, 'SQL', 7)
 student2.rate_lc(mentor2, 'SQL', 7)
 
-print(student1.grades)
-print(student2.grades)
+# print(student1.grades)
+# print(student2.grades)
 
-print(mentor1.grades)
-print(mentor2.grades)
+# print(mentor1.grades)
+# print(mentor2.grades)
 
-print(student1)
-print(student2)
+# print(student1)
+# print(student2)
 
-print(mentor1)
-print(mentor2)
+# print(mentor1)
+# print(mentor2)
 
-print(student1.__lt__(student2))
-print(mentor1.__lt__(mentor2))
+# print(student1.__lt__(student2))
+# print(mentor1.__lt__(mentor2))
+
+student_list = [student1, student2]
+
+
+def average_rating_course_student (student_list, course):
+    for student in student_list:
+        print (student.name)
+        n = 0
+        sum = 0
+        for i in student.grades[course]:
+            sum +=i
+            n +=1
+        print (sum/n)
+
+lecturer_list = [mentor1, mentor2]
+
+def average_rating_course_lecturer (lecturer_list, course):
+    for lecturer in lecturer_list:
+        if course in lecturer.courses_attached:
+            print (lecturer.name)
+            n = 0
+            sum = 0
+            for i in lecturer.grades[course]:
+                sum +=i
+                n +=1
+            print (sum/n)
+
+
+average_rating_course_student(student_list, 'Python')    
+average_rating_course_lecturer (lecturer_list, 'SQL')
